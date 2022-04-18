@@ -78,6 +78,29 @@ code {
   text-align: center;
 }
 
+.locationStat h1{
+  width: 85%;
+  font-size: 54px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.locationStat img{
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.locationStat p{
+  width: 85%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+}
 
 
 

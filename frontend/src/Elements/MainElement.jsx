@@ -20,6 +20,7 @@ function MainElement() {
     const [IsCitySearchListShow, setIsCitySearchListShow] = useState(false);
     const [CityId, setCityId] = useState(null)
     const [CitySearchList, setCitySearchList] = useState([])
+    const [LocationList, setLocationList] = useState([])
     
     function ChangeCityField(e){
         setCitySearch(e.target.value);
@@ -37,6 +38,12 @@ function MainElement() {
     function ClickOnCityVatiable(id){
         setCityId(id);
         setIsCitySearchListShow(false);
+        axios.get('http://127.0.0.1:8000/location/getlocationsbycityid?id='+id)
+        .then(function (response) {
+            let json = JSON.parse(response.data);
+            setLocationList(json);
+            console.log(json);
+        });
     }
 
     function ResultLine(props) {
@@ -59,9 +66,9 @@ function MainElement() {
             </div>
 
             <div id="locations">
-                <Location name="location 1" href="google.com" img="https://top10.travel/wp-content/uploads/2016/10/eyfeleva-bashnya.jpg"/>
-                <Location name="location 2" href="google.com" img="https://top10.travel/wp-content/uploads/2016/10/eyfeleva-bashnya.jpg"/>
-                <Location name="location 3" href="google.com" img="https://top10.travel/wp-content/uploads/2016/10/eyfeleva-bashnya.jpg"/>
+                {LocationList && LocationList.map((element, index) => 
+                    <Location name={element.fields.name} href={"location?id="+element.pk} img={"http://127.0.0.1:8000/"+element.fields.image}/>
+                )}
             </div>
         </div>
     );
